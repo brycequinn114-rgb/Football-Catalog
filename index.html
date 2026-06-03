@@ -39,7 +39,9 @@
       color: white;
     }
 
-    input { flex: 1; }
+    input {
+      flex: 1;
+    }
 
     .grid {
       display: grid;
@@ -74,6 +76,8 @@
       padding: 10px 15px;
       cursor: pointer;
       font-weight: bold;
+      width: 100%;
+      margin-top: 10px;
     }
 
     .back {
@@ -81,6 +85,33 @@
       cursor: pointer;
       display: inline-block;
       margin-top: 15px;
+    }
+
+    /* 📱 MOBILE FIX */
+    @media (max-width: 768px) {
+      .container {
+        padding: 10px;
+      }
+
+      .topbar {
+        flex-direction: column;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        font-size: 14px;
+      }
+
+      input, select {
+        font-size: 14px;
+      }
+
+      button {
+        font-size: 16px;
+      }
     }
   </style>
 </head>
@@ -96,7 +127,7 @@
   <div class="topbar">
     <input id="search" placeholder="Search games...">
     <select id="filter">
-      <option value="all">All</option>
+      <option value="all">All Games</option>
       <option value="win">Wins</option>
       <option value="loss">Losses</option>
     </select>
@@ -108,14 +139,14 @@
     <h2 id="title"></h2>
     <p id="info"></p>
 
-    <button id="watchBtn">Watch Game</button>
+    <button id="watchBtn">Watch Game on YouTube</button>
 
     <div class="back" onclick="goBack()">← Back</div>
   </div>
 
 </div>
 
-<!-- ONLY SOURCE OF DATA -->
+<!-- YOUR DATA FILE -->
 <script src="games.js"></script>
 
 <script>
@@ -180,10 +211,14 @@ function openGame(game) {
     game.note;
 
   document.getElementById("watchBtn").onclick = () => {
-    window.open(
-      "https://www.youtube.com/watch?v=" + game.video,
-      "_blank"
-    );
+    if (game.video) {
+      window.open(
+        "https://www.youtube.com/watch?v=" + game.video,
+        "_blank"
+      );
+    } else {
+      alert("No video for this game yet.");
+    }
   };
 }
 
