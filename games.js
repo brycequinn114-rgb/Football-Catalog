@@ -1,7 +1,7 @@
 const games = [
   {
     title: "Griswold Vs Montville",
-    date: "November, 2000",
+    date: "Nov, 2000",
     score: "8 - 20",
     result: "loss",
     note: "First and Only ECC loss.",
