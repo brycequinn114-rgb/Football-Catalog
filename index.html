@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Football Film Archive</title>
+
+  <style>
+    body {
+      font-family: Arial;
+      margin: 0;
+      background: #0b0b0b;
+      color: white;
+    }
+
+    header {
+      background: black;
+      color: #00ff66;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 2px solid #00ff66;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .topbar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    input, select {
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #00ff66;
+      background: #121212;
+      color: white;
+    }
+
+    input { flex: 1; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 15px;
+    }
+
+    .card {
+      background: #121212;
+      border: 1px solid #00ff66;
+      padding: 15px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      box-shadow: 0 0 10px #00ff66;
+    }
+
+    .view {
+      display: none;
+      margin-top: 20px;
+      padding: 15px;
+      background: #121212;
+      border: 1px solid #00ff66;
+      border-radius: 10px;
+    }
+
+    button {
+      background: #00ff66;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .back {
+      color: #00ff66;
+      cursor: pointer;
+      display: inline-block;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Football Film Archive</h1>
+</header>
+
+<div class="container">
+
+  <div class="topbar">
+    <input id="search" placeholder="Search games...">
+    <select id="filter">
+      <option value="all">All</option>
+      <option value="win">Wins</option>
+      <option value="loss">Losses</option>
+    </select>
+  </div>
+
+  <div id="grid" class="grid"></div>
+
+  <div id="view" class="view">
+    <h2 id="title"></h2>
+    <p id="info"></p>
+
+    <button id="watchBtn">Watch Game</button>
+
+    <div class="back" onclick="goBack()">← Back</div>
+  </div>
+
+</div>
+
+<!-- ONLY SOURCE OF DATA -->
+<script src="games.js"></script>
+
+<script>
+const grid = document.getElementById("grid");
+const search = document.getElementById("search");
+const filter = document.getElementById("filter");
+const view = document.getElementById("view");
+
+function render(list) {
+  grid.innerHTML = "";
+
+  list.forEach(g => {
+    const card = document.createElement("div");
+    card.className = "card";
+
+    card.innerHTML = `
+      <h3>${g.title}</h3>
+      <p>${g.date}</p>
+      <p><b>${g.score}</b></p>
+      <p>${g.note}</p>
+    `;
+
+    card.onclick = () => openGame(g);
+    grid.appendChild(card);
+  });
+}
+
+function update() {
+  const value = search.value.toLowerCase();
+  const type = filter.value;
+
+  const filtered = games.filter(g => {
+    const matchSearch =
+      g.title.toLowerCase().includes(value) ||
+      g.date.toLowerCase().includes(value) ||
+      g.score.toLowerCase().includes(value) ||
+      g.note.toLowerCase().includes(value);
+
+    const matchFilter =
+      type === "all" || g.result === type;
+
+    return matchSearch && matchFilter;
+  });
+
+  render(filtered);
+}
+
+search.addEventListener("input", update);
+filter.addEventListener("change", update);
+
+function openGame(game) {
+  grid.style.display = "none";
+  view.style.display = "block";
+
+  document.getElementById("title").innerText = game.title;
+
+  document.getElementById("info").innerHTML =
+    game.date +
+    " | Score: " +
+    game.score +
+    "<br>" +
+    game.note;
+
+  document.getElementById("watchBtn").onclick = () => {
+    window.open(
+      "https://www.youtube.com/watch?v=" + game.video,
+      "_blank"
+    );
+  };
+}
+
+function goBack() {
+  view.style.display = "none";
+  grid.style.display = "grid";
+}
+
+render(games);
+</script>
+
+</body>
+</html>
