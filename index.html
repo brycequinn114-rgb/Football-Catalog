@@ -5,112 +5,145 @@
 
   <style>
     body {
-      font-family: Arial;
       margin: 0;
-      background: #0b0b0b;
-      color: white;
+      font-family: Arial, sans-serif;
+      background: #0a0a0a;
+      color: #ffffff;
     }
 
     header {
-      background: black;
-      color: #00ff66;
-      padding: 20px;
-      text-align: center;
+      background: #000;
       border-bottom: 2px solid #00ff66;
+      padding: 18px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 20px;
+      letter-spacing: 1px;
+      color: #00ff66;
     }
 
     .container {
-      max-width: 1000px;
+      max-width: 1100px;
       margin: auto;
       padding: 20px;
     }
 
+    /* TOP BAR */
     .topbar {
       display: flex;
-      gap: 10px;
-      margin-bottom: 15px;
+      gap: 12px;
+      margin-bottom: 20px;
     }
 
     input, select {
-      padding: 10px;
-      border-radius: 6px;
-      border: 1px solid #00ff66;
-      background: #121212;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #222;
+      background: #141414;
       color: white;
+      outline: none;
+      font-size: 14px;
     }
 
     input {
       flex: 1;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 15px;
+    input:focus, select:focus {
+      border-color: #00ff66;
     }
 
+    /* GRID */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 14px;
+    }
+
+    /* CARD */
     .card {
       background: #121212;
-      border: 1px solid #00ff66;
-      padding: 15px;
-      border-radius: 10px;
+      border: 1px solid #1f1f1f;
+      border-radius: 12px;
+      padding: 14px;
       cursor: pointer;
+      transition: 0.2s ease;
     }
 
     .card:hover {
-      box-shadow: 0 0 10px #00ff66;
+      transform: translateY(-3px);
+      border-color: #00ff66;
+      box-shadow: 0 6px 18px rgba(0,255,102,0.15);
     }
 
+    .card h3 {
+      margin: 0 0 6px;
+      font-size: 16px;
+      color: #fff;
+    }
+
+    .meta {
+      font-size: 13px;
+      color: #aaa;
+      margin: 4px 0;
+    }
+
+    .score {
+      color: #00ff66;
+      font-weight: bold;
+    }
+
+    /* VIEW */
     .view {
       display: none;
       margin-top: 20px;
-      padding: 15px;
+      padding: 18px;
       background: #121212;
-      border: 1px solid #00ff66;
-      border-radius: 10px;
+      border-radius: 12px;
+      border: 1px solid #1f1f1f;
+    }
+
+    .view h2 {
+      margin-top: 0;
+      color: #00ff66;
     }
 
     button {
-      background: #00ff66;
-      border: none;
-      padding: 10px 15px;
-      cursor: pointer;
-      font-weight: bold;
+      margin-top: 15px;
+      padding: 12px;
       width: 100%;
-      margin-top: 10px;
+      border: none;
+      border-radius: 8px;
+      background: #00ff66;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background: #00e65c;
     }
 
     .back {
+      display: inline-block;
+      margin-top: 12px;
       color: #00ff66;
       cursor: pointer;
-      display: inline-block;
-      margin-top: 15px;
+      font-size: 14px;
     }
 
-    /* 📱 MOBILE FIX */
+    /* MOBILE */
     @media (max-width: 768px) {
-      .container {
-        padding: 10px;
-      }
-
       .topbar {
         flex-direction: column;
       }
 
       .grid {
         grid-template-columns: 1fr;
-      }
-
-      .card {
-        font-size: 14px;
-      }
-
-      input, select {
-        font-size: 14px;
-      }
-
-      button {
-        font-size: 16px;
       }
     }
   </style>
@@ -119,13 +152,13 @@
 <body>
 
 <header>
-  <h1>Football Film Archive</h1>
+  <h1>FOOTBALL FILM ARCHIVE</h1>
 </header>
 
 <div class="container">
 
   <div class="topbar">
-    <input id="search" placeholder="Search games...">
+    <input id="search" placeholder="Search games, teams, scores...">
     <select id="filter">
       <option value="all">All Games</option>
       <option value="win">Wins</option>
@@ -141,15 +174,31 @@
 
     <button id="watchBtn">Watch Game on YouTube</button>
 
-    <div class="back" onclick="goBack()">← Back</div>
+    <div class="back" onclick="goBack()">← Back to Games</div>
   </div>
 
 </div>
 
-<!-- YOUR DATA FILE -->
-<script src="games.js"></script>
-
 <script>
+const games = [
+  {
+    title: "NFA vs Griswold",
+    date: "Oct 3, 2025",
+    score: "28 - 14",
+    result: "win",
+    note: "Strong defensive performance in the second half.",
+    video: "lBGbG9bUxRM"
+  },
+  {
+    title: "NFA vs Bacon Academy",
+    date: "Oct 10, 2025",
+    score: "21 - 7",
+    result: "win",
+    note: "Controlled the run game all night.",
+    video: "dQw4w9WgXcQ"
+  }
+];
+
 const grid = document.getElementById("grid");
 const search = document.getElementById("search");
 const filter = document.getElementById("filter");
@@ -164,9 +213,9 @@ function render(list) {
 
     card.innerHTML = `
       <h3>${g.title}</h3>
-      <p>${g.date}</p>
-      <p><b>${g.score}</b></p>
-      <p>${g.note}</p>
+      <div class="meta">${g.date}</div>
+      <div class="meta score">${g.score}</div>
+      <div class="meta">${g.note}</div>
     `;
 
     card.onclick = () => openGame(g);
@@ -204,21 +253,13 @@ function openGame(game) {
   document.getElementById("title").innerText = game.title;
 
   document.getElementById("info").innerHTML =
-    game.date +
-    " | Score: " +
-    game.score +
-    "<br>" +
-    game.note;
+    `${game.date} • Score: <span style="color:#00ff66">${game.score}</span><br><br>${game.note}`;
 
   document.getElementById("watchBtn").onclick = () => {
-    if (game.video) {
-      window.open(
-        "https://www.youtube.com/watch?v=" + game.video,
-        "_blank"
-      );
-    } else {
-      alert("No video for this game yet.");
-    }
+    window.open(
+      "https://www.youtube.com/watch?v=" + game.video,
+      "_blank"
+    );
   };
 }
 
