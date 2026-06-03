@@ -125,13 +125,61 @@
       font-size: 14px;
     }
 
+    /* 📱 MOBILE FIX (BUILT IN) */
     @media (max-width: 768px) {
+      .container {
+        padding: 12px;
+      }
+
+      header {
+        padding: 14px;
+      }
+
+      header h1 {
+        font-size: 18px;
+      }
+
       .topbar {
         flex-direction: column;
+        gap: 8px;
+      }
+
+      input, select {
+        font-size: 16px;
+        padding: 12px;
+        border-radius: 10px;
       }
 
       .grid {
         grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .card {
+        padding: 16px;
+        border-radius: 12px;
+      }
+
+      .card h3 {
+        font-size: 17px;
+      }
+
+      .meta {
+        font-size: 14px;
+      }
+
+      button {
+        font-size: 16px;
+        padding: 14px;
+        border-radius: 10px;
+      }
+
+      .view {
+        padding: 16px;
+      }
+
+      .back {
+        font-size: 15px;
       }
     }
   </style>
@@ -167,7 +215,6 @@
 
 </div>
 
-<!-- DATA FILE (DO NOT CHANGE STRUCTURE) -->
 <script src="games.js"></script>
 
 <script>
