@@ -8,7 +8,7 @@ const games = [
     video: "lBGbG9bUxRM"
   },
   {
-    title: "Griswold Vs Planifield ",
+    title: "Griswold Vs Plainfield ",
     date: "Nov, 1994",
     score: "20 - 14",
     result: "win",
