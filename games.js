@@ -16,11 +16,12 @@ const games = [
     video: "axMm39qXfks"
   },
   {
-    title: "Game 3",
-    date: "",
-    score: "",
-    note: "",
-    video: ""
+    title: "Griswold Vs Morgan",
+    date: "Nov, 1999",
+    score: "16-10",
+    result: "win",
+    note: "Last PFC Game 1999",
+    video: "mm362cyMBZ0"
   },
   {
     title: "Game 4",
