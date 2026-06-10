@@ -32,25 +32,28 @@ const games = [
     video: "fzVnM2ltd6g"
   },
   {
-    title: "Game 5",
-    date: "",
-    score: "",
-    note: "",
-    video: ""
+    title: "Griswold Vs Plainfield",
+    date: "Thanksgiving 2003",
+    score: "28-27",
+    result: "win",
+    note: "WIN IN OT",
+    video: "QWoeDI3GQaE"
   },
   {
-    title: "Game 6",
-    date: "",
-    score: "",
-    note: "",
-    video: ""
+    title: "Griswold Vs Morgan",
+    date: "1997",
+    score: "14-13",
+    result:"win",
+    note: "OT Win",
+    video: "fFclNLJ75CM"
   },
   {
-    title: "Game 7",
-    date: "",
-    score: "",
-    note: "",
-    video: ""
+    title: "Griswold Vs Windsorlocks",
+    date: "1994",
+    score: "32-26",
+    result: "win",
+    note: "1st Winning Season",
+    video: "EuNqVfiOdP8"
   },
   {
     title: "Game 8",
