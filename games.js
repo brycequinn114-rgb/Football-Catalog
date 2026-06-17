@@ -56,11 +56,36 @@ const games = [
     video: "EuNqVfiOdP8"
   },
   {
-    title: "Game 8",
-    date: "",
-    score: "",
-    note: "",
-    video: ""
+    title: "Griswold Vs Ansonia",
+    date: "Nov,28 2000",
+    score: "7-6",
+    result: "win",
+    note: "Semi-Final",
+    video: "ArPaF6Gydmk"
+  },
+{
+    title: "Griswold Vs Ledyard",
+    date: "Oct,28 2000",
+    score: "16-12",
+    result: "win",
+    note: "N/A",
+    video: "PPmCU7pfpIk"
+  },
+  {
+    title: "Griswold Vs Stonington",
+    date: "Sep,16 2000",
+    score: "12-0",
+    result: "win",
+    note: "1st Ecc Win",
+    video: "V4eNFqaxRAw"
+  },
+  {
+    title: "Griswold Vs ST.B's",
+    date: "Sep,29 2000",
+    score: "Griswold Blowout",
+    result: "win",
+    note: "N/A",
+    video: "BaH1PrHwPuc"
   }
-];
+  ];
 
