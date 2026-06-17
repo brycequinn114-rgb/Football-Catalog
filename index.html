@@ -2,47 +2,70 @@
 <html>
 <head>
   <title>Football Film Archive</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #0b0b0b;
+      background:
+        radial-gradient(circle at top, rgba(0,255,102,0.14), transparent 35%),
+        linear-gradient(180deg, #050505, #0b0b0b);
       color: white;
+      min-height: 100vh;
     }
 
     header {
-      background: #000;
+      background: rgba(0, 0, 0, 0.9);
       border-bottom: 2px solid #00ff66;
-      padding: 16px;
+      padding: 28px 16px;
       text-align: center;
+      box-shadow: 0 0 25px rgba(0,255,102,0.18);
     }
 
     header h1 {
       margin: 0;
-      font-size: 20px;
+      font-size: 34px;
       color: #00ff66;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    header p {
+      margin: 8px 0 0;
+      color: #aaa;
+      font-size: 14px;
     }
 
     .container {
-      max-width: 1100px;
+      max-width: 1150px;
       margin: auto;
-      padding: 20px;
+      padding: 24px;
     }
 
-    /* TOP BAR */
     .topbar {
       display: flex;
-      gap: 10px;
-      margin-bottom: 15px;
+      gap: 12px;
+      margin-bottom: 22px;
+      background: rgba(18,18,18,0.9);
+      border: 1px solid #222;
+      padding: 14px;
+      border-radius: 16px;
+      position: sticky;
+      top: 10px;
+      z-index: 5;
+      backdrop-filter: blur(10px);
     }
 
     input, select {
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #222;
-      background: #141414;
+      padding: 13px;
+      border-radius: 10px;
+      border: 1px solid #2a2a2a;
+      background: #090909;
       color: white;
       outline: none;
       font-size: 14px;
@@ -54,129 +77,168 @@
 
     input:focus, select:focus {
       border-color: #00ff66;
+      box-shadow: 0 0 0 2px rgba(0,255,102,0.15);
     }
 
-    /* GRID (DESKTOP DEFAULT) */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 14px;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 18px;
     }
 
-    /* CARD */
     .card {
-      background: #121212;
-      border: 1px solid #1f1f1f;
-      border-radius: 12px;
-      padding: 14px;
+      background: linear-gradient(180deg, #171717, #0f0f0f);
+      border: 1px solid #252525;
+      border-radius: 18px;
+      padding: 18px;
       cursor: pointer;
-      transition: 0.15s ease;
+      transition: 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: #00ff66;
+      opacity: 0.8;
     }
 
     .card:hover {
-      transform: translateY(-2px);
+      transform: translateY(-5px);
       border-color: #00ff66;
-      box-shadow: 0 6px 15px rgba(0,255,102,0.15);
+      box-shadow: 0 12px 28px rgba(0,255,102,0.18);
     }
 
     .card h3 {
-      margin: 0 0 6px;
-      font-size: 16px;
+      margin: 10px 0 10px;
+      font-size: 18px;
+      line-height: 1.25;
     }
 
     .meta {
       font-size: 13px;
       color: #aaa;
-      margin: 4px 0;
+      margin: 7px 0;
     }
 
     .score {
       color: #00ff66;
       font-weight: bold;
+      font-size: 15px;
     }
 
-    /* VIEW PAGE */
+    .tag {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: bold;
+      background: rgba(0,255,102,0.12);
+      color: #00ff66;
+      border: 1px solid rgba(0,255,102,0.25);
+    }
+
     .view {
       display: none;
       margin-top: 20px;
-      padding: 15px;
-      background: #121212;
-      border-radius: 10px;
-      border: 1px solid #1f1f1f;
+      padding: 26px;
+      background: linear-gradient(180deg, #171717, #0f0f0f);
+      border-radius: 20px;
+      border: 1px solid #252525;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.4);
+    }
+
+    .view h2 {
+      margin-top: 0;
+      color: #00ff66;
+      font-size: 28px;
+    }
+
+    #info {
+      color: #ddd;
+      line-height: 1.6;
     }
 
     button {
-      margin-top: 10px;
-      padding: 12px;
+      margin-top: 18px;
+      padding: 15px;
       width: 100%;
       border: none;
-      border-radius: 8px;
+      border-radius: 12px;
       background: #00ff66;
       color: #000;
       font-weight: bold;
       cursor: pointer;
+      font-size: 15px;
+      transition: 0.15s ease;
     }
 
     button:hover {
       background: #00e65c;
+      transform: translateY(-2px);
     }
 
     .back {
       display: inline-block;
-      margin-top: 12px;
+      margin-top: 18px;
       color: #00ff66;
       cursor: pointer;
       font-size: 14px;
+      font-weight: bold;
     }
-    
+
+    .empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      color: #888;
+      padding: 35px;
+      border: 1px dashed #333;
+      border-radius: 16px;
+    }
+
     @media (max-width: 768px) {
       .container {
-        padding: 10px;
+        padding: 12px;
+      }
+
+      header {
+        padding: 22px 12px;
       }
 
       header h1 {
-        font-size: 18px;
+        font-size: 24px;
       }
 
       .topbar {
         flex-direction: column;
+        position: static;
       }
 
       input, select {
         font-size: 16px;
-        padding: 12px;
-      }
-
-      /* FORCE 1 COLUMN */
-      .grid {
-        grid-template-columns: 1fr !important;
-        gap: 12px;
-      }
-
-      .card {
-        padding: 18px;
-        border-radius: 14px;
-      }
-
-      .card h3 {
-        font-size: 18px;
-      }
-
-      .meta {
-        font-size: 14px;
-      }
-
-      button {
-        font-size: 16px;
         padding: 14px;
       }
 
-      .view {
-        padding: 16px;
+      .grid {
+        grid-template-columns: 1fr;
       }
 
-      .back {
-        font-size: 15px;
+      .card {
+        padding: 20px;
+      }
+
+      .card h3 {
+        font-size: 19px;
+      }
+
+      .view {
+        padding: 20px;
       }
     }
   </style>
@@ -186,12 +248,13 @@
 
 <header>
   <h1>Football Film Archive</h1>
+  <p>Classic games, scores, notes, and full film links</p>
 </header>
 
 <div class="container">
 
   <div class="topbar">
-    <input id="search" placeholder="Search games...">
+    <input id="search" placeholder="Search by team, date, score, or note...">
     <select id="filter">
       <option value="all">All Games</option>
       <option value="win">Wins</option>
@@ -205,9 +268,9 @@
     <h2 id="title"></h2>
     <p id="info"></p>
 
-    <button id="watchBtn">Watch Game on YouTube</button>
+    <button id="watchBtn">▶ Watch Game on YouTube</button>
 
-    <div class="back" onclick="goBack()">← Back</div>
+    <div class="back" onclick="goBack()">← Back to Archive</div>
   </div>
 
 </div>
@@ -223,15 +286,23 @@ const view = document.getElementById("view");
 function render(list) {
   grid.innerHTML = "";
 
+  if (list.length === 0) {
+    grid.innerHTML = `<div class="empty">No games found. Try another search.</div>`;
+    return;
+  }
+
   list.forEach(g => {
     const card = document.createElement("div");
     card.className = "card";
+
+    const resultText = g.result === "win" ? "WIN" : "LOSS";
 
     card.innerHTML = `
       <h3>${g.title}</h3>
       <div class="meta">${g.date}</div>
       <div class="meta score">${g.score}</div>
       <div class="meta">${g.note}</div>
+      <span class="tag">${resultText}</span>
     `;
 
     card.onclick = () => openGame(g);
@@ -265,27 +336,24 @@ filter.addEventListener("change", update);
 function openGame(game) {
   grid.style.display = "none";
   view.style.display = "block";
+  document.querySelector(".topbar").style.display = "none";
 
   document.getElementById("title").innerText = game.title;
 
   document.getElementById("info").innerHTML =
-    game.date +
-    " | Score: <span style='color:#00ff66'>" +
-    game.score +
-    "</span><br><br>" +
-    game.note;
+    `<strong>Date:</strong> ${game.date}<br>
+     <strong>Score:</strong> <span style="color:#00ff66; font-weight:bold;">${game.score}</span><br><br>
+     ${game.note}`;
 
   document.getElementById("watchBtn").onclick = () => {
-    window.open(
-      "https://www.youtube.com/watch?v=" + game.video,
-      "_blank"
-    );
+    window.open("https://www.youtube.com/watch?v=" + game.video, "_blank");
   };
 }
 
 function goBack() {
   view.style.display = "none";
   grid.style.display = "grid";
+  document.querySelector(".topbar").style.display = "flex";
 }
 
 render(games);
