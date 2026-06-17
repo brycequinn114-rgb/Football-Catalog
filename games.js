@@ -86,6 +86,13 @@ const games = [
     result: "win",
     note: "N/A",
     video: "BaH1PrHwPuc"
-  }
-  ];
+  },
+   {
+    title: "Griswold Vs HKHS",
+    date: "Sep,29 1999",
+    score: "8-0",
+    result: "win",
+    note: "Big Upset at Home",
+    video: "0T1xwQJFnFY"
+   },
 
