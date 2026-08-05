@@ -95,4 +95,21 @@ const games = [
     note: "Big Upset at Home",
     video: "0T1xwQJFnFY"
    },
-  ];
+  {
+    title: "Griswold Vs East Lyme",
+    date: "Oct,12 2001",
+    score: "51-6",
+    result: "win",
+    note: "Romp at home",
+    video: "v7-ir5-kiek"
+  },
+  {
+    title: "Griswold Vs Morgan",
+     date: "1996",
+     core: 26-18,
+      result: "win",
+      note: "Big Comeback",
+      video:"KC_HZlZX3Z4"
+},
+];
+
