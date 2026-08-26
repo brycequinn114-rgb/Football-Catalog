@@ -459,11 +459,11 @@ function update() {
   const type = filter.value;
 
   const filtered = games.filter(g => {
-    const matchSearch =
-      g.title.toLowerCase().includes(value) ||
-      g.date.toLowerCase().includes(value) ||
-      g.score.toLowerCase().includes(value) ||
-      g.note.toLowerCase().includes(value);
+const matchSearch =
+  String(g.title || "").toLowerCase().includes(value) ||
+  String(g.date || "").toLowerCase().includes(value) ||
+  String(g.score || "").toLowerCase().includes(value) ||
+  String(g.note || "").toLowerCase().includes(value);
 
     const matchFilter =
       type === "all" || g.result === type;
