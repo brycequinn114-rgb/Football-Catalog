@@ -106,7 +106,7 @@ const games = [
   {
     title: "Griswold Vs Morgan",
      date: "1996",
-     core: 26-18,
+     score: "26-18",
       result: "win",
       note: "Big Comeback",
       video:"KC_HZlZX3Z4"
