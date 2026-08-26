@@ -111,5 +111,20 @@ const games = [
       note: "Big Comeback",
       video:"KC_HZlZX3Z4"
 },
-];
-
+ {
+    title: "Griswold Vs Morgan",
+     date: "1998",
+     score: "34-21",
+      result: "win",
+      note: "BRAWL",
+      video:"v5qMn8ij8pghh"
+},
+ {
+    title: "Griswold Vs Killingly",
+     date: "Oct,20 2000",
+     score: "41-0",
+      result: "win",
+      note: "Beatdown",
+      video:"sADluvmucTA"
+ },
+  ];
