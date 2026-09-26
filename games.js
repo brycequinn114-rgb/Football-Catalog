@@ -127,4 +127,12 @@ const games = [
       note: "Beatdown",
       video:"sADluvmucTA"
  },
-  ];
+  {
+     title: "Griswold Vs North Branford",
+     date: "1996",
+     score: "31-26",
+      result: "win",
+      note: "N/A",
+      video:"I4JOcAjQlLA"
+  },
+  ] 
