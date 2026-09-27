@@ -134,5 +134,13 @@ const games = [
       result: "win",
       note: "N/A",
       video:"I4JOcAjQlLA"
+  }, 
+  {
+     title: "Griswold Vs Plainfield",
+     date: "2004",
+     score: "27-7",
+      result: "win",
+      note: "Last Griswold Game",
+      video:"S0ug86l935U"
   },
   ] 
