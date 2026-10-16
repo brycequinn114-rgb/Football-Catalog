@@ -143,4 +143,11 @@ const games = [
       note: "Last Griswold Game",
       video:"S0ug86l935U"
   },
-  ] 
+  {
+    title: "Griswold Vs Stafford",
+    date: "1995",
+    score: "22-20",
+    result: "win",
+    note: "N/A",
+    video: "SgAtCy7fnzM"
+    
